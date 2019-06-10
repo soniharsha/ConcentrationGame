@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
     
+    var buttonFlipColor = UIColor.orange
+    
     // MARK: Outlets
     
     @IBOutlet weak var flipCountLabel: UILabel!
@@ -25,15 +27,27 @@ class ViewController: UIViewController {
             flipCountLabel.text = "SCORE: \(game.score)"
             gameControlTitle.setTitle("Stop", for: UIControl.State.normal)
             assignEmojiToCards()
+            for index in cardButtons.indices {
+                cardButtons[index].backgroundColor = buttonFlipColor
+            }
+            flipCountLabel.textColor = UIColor.white
+            flipCountLabel.backgroundColor = buttonFlipColor
+            gameControlTitle.backgroundColor = buttonFlipColor
+            gameControlTitle.setTitleColor(UIColor.white, for: UIControl.State.normal)
         } else {
             gameControlTitle.setTitle("Start", for: UIControl.State.normal)
             for index in cardButtons.indices { // use forEach
                 let button = cardButtons[index]
                 button.setTitle("", for: UIControl.State.normal)
                 button.backgroundColor = .orange
+                flipCountLabel.textColor = UIColor.orange
+                flipCountLabel.backgroundColor = UIColor.white.withAlphaComponent(0.0)
+                self.view.backgroundColor = UIColor.black
                 emoji[game.cards[index].identifier] = nil
                 game.reset()
             }
+            gameControlTitle.backgroundColor = .red
+            gameControlTitle.setTitleColor(UIColor.black, for: UIControl.State.normal)
         }
     }
     
@@ -55,7 +69,7 @@ class ViewController: UIViewController {
                 button.backgroundColor = .white
             } else {
                 button.setTitle("", for: UIControl.State.normal)
-                button.backgroundColor = card.isMatched ? UIColor.white.withAlphaComponent(0.7) : UIColor.orange
+                button.backgroundColor = card.isMatched ? UIColor.white.withAlphaComponent(0.0) : buttonFlipColor
             }
         }
         
@@ -77,9 +91,15 @@ class ViewController: UIViewController {
                             2: ["🍐","🍏","🍈","🍌","🥝","🍋","🍇","🍍"],
                             3: ["❤️","🧡","💛","💚","💙","💜","💖","🖤"]]
         
+        var viewBackgroundColors = [UIColor.yellow, UIColor.brown, UIColor.green, UIColor.red ]
+        var buttonBackgroundColors = [UIColor.magenta, UIColor.darkGray, UIColor.brown, UIColor.black]
+        
         var uniqueEmojiIndex = 0
         let totalUniqueEmojiIndex = (cardButtons.count + 1) / 2
         let randomKey = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+        self.view.backgroundColor = viewBackgroundColors[randomKey]
+        buttonFlipColor = buttonBackgroundColors[randomKey]
+        
         for index in cardButtons.indices {
             let card = game.cards[index]
             
