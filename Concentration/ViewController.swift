@@ -23,24 +23,32 @@ class ViewController: UIViewController
     @IBOutlet var cardButtons: [UIButton]!
     
     
+    @IBOutlet weak var gameControlTitle: UIButton!
+    
     @IBAction func gameControl(_ sender: UIButton) {
-        let gameControlTitle = sender.title(for: UIControl.State.normal)!
-        if gameControlTitle == "Start" {
-            sender.setTitle("Stop", for: UIControl.State.normal)
+        let title = gameControlTitle.title(for: UIControl.State.normal)!
+        if title == "Start" {
+            gameControlTitle.setTitle("Stop", for: UIControl.State.normal)
+            assignEmojiToCards()
+            
         }else {
-            sender.setTitle("Start", for: UIControl.State.normal)
+            gameControlTitle.setTitle("Start", for: UIControl.State.normal)
+            for index in cardButtons.indices {
+                let button = cardButtons[index]
+                button.setTitle("", for: UIControl.State.normal)
+                button.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+            }
         }
-        assignEmojiToCards()
     }
     
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount+=1
-        if let cardNumber = cardButtons.firstIndex(of: sender) /* unwraps optional value and if set then 'if' is executed otherwsie 'else' will be executed*/{
+        if let cardNumber = cardButtons.firstIndex(of: sender), gameControlTitle.title(for: UIControl.State.normal) == "Stop" /* unwraps optional value and if set then 'if' is executed otherwsie 'else' will be executed*/{
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
-        } else {
+        } /*else {
             print("chosen card was not in cardbuttons")
-        }
+        }*/
     }
     
     func updateViewFromModel() {
