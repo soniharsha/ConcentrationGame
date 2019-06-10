@@ -106,7 +106,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = Ixigo;
+				ORGANIZATIONNAME = ixigo;
 				TargetAttributes = {
 					3AE29F3E22A9216C0003CBB1 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -299,14 +299,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = URFH2U92ZY;
+				DEVELOPMENT_TEAM = 6WCD67RXUP;
 				INFOPLIST_FILE = Concentration/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cs193p.lecture.Concentration;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ixigo.practice.concentration;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -318,14 +318,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = URFH2U92ZY;
+				DEVELOPMENT_TEAM = 6WCD67RXUP;
 				INFOPLIST_FILE = Concentration/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = cs193p.lecture.Concentration;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ixigo.practice.concentration;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -8,23 +8,24 @@
 
 import Foundation
 
-struct Card
-{
-    var isFaceUp=false
-    var isMatched=false
-    var Identifier: Int
+// opening braces on same line
+struct Card {
+    var identifier: Int
+
+    var isFaceUp = false // space before and after operators
+    var isMatched = false
+    var isSeen = false
     
     static var identifierFactory = 0
     
     static func getUniqueIdentifier() -> Int {
-        identifierFactory+=1
-        return identifierFactory;
+        identifierFactory += 1
+        return identifierFactory
     }
     
-    init(){
-        self.Identifier = Card.getUniqueIdentifier()
+    init() {
+        self.identifier = Card.getUniqueIdentifier()
     }
-    
 }
 
 

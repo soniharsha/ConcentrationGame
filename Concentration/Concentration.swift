@@ -8,11 +8,12 @@
 
 import Foundation
 
-class Concentration
-{
-    var cards = [Card]()
+class Concentration {
+    private(set) var cards = [Card]()
+
+    private(set) var score = 0
     
-    var indexOfOneAndOnlyFaceUp: Int?
+    private var indexOfOneAndOnlyFaceUp: Int?
     
     func chooseCard(at index: Int) {
         //cards[index].isFaceUp = !cards[index].isFaceUp
@@ -21,10 +22,17 @@ class Concentration
         //only one card faceUp
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUp, matchIndex != index {
-                if cards[matchIndex].Identifier == cards[index].Identifier {
+                if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    score += 2
+                } else {
+                    if cards[matchIndex].isSeen ==  true {
+                        score -= 1
+                    }
                 }
+                cards[matchIndex].isSeen = true
+                cards[index].isSeen = true
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUp = nil
             } else {
@@ -36,10 +44,16 @@ class Concentration
                 indexOfOneAndOnlyFaceUp = index
             }
         }
-            
     }
     
-    init(numberOfPairsOfCards: Int){
+    func reset() {
+        for index in cards.indices {
+            cards[index].isSeen = false
+        }
+        score = 0
+    }
+    
+    init(numberOfPairsOfCards: Int) {
         var tempcards = [Card]()
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
@@ -53,7 +67,6 @@ class Concentration
             tempcards.remove(at: randomIndex)
             remainingCard = remainingCard+1
         }
-        
     }
 }
 
