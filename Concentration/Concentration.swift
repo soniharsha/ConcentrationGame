@@ -16,7 +16,7 @@ class Concentration {
     private var indexOfOneAndOnlyFaceUp: Int?
     
     let date = Date()
-    private  lazy var lastTimeTouched = date.timeIntervalSinceNow
+    private lazy var lastTimeTouched = date.timeIntervalSinceNow
     
     func chooseCard(at index: Int) {
         //cards[index].isFaceUp = !cards[index].isFaceUp
@@ -25,19 +25,19 @@ class Concentration {
         //only one card faceUp
         
         let curTime = date.timeIntervalSinceNow
-        let dateDiff = curTime - lastTimeTouched
+        let dateDiff = Int(curTime - lastTimeTouched)
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUp, matchIndex != index {
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
-                    score = score+2+Int(dateDiff)
+                    score = score + 2 + dateDiff
                 } else {
-                    if cards[matchIndex].isSeen ==  true {
-                        score = score-1+Int(dateDiff)
+                    if cards[matchIndex].isSeen {
+                        score = score - 1 + dateDiff
                     }
-                    if cards[index].isSeen == true {
-                        score = score-1+Int(dateDiff)
+                    if cards[index].isSeen {
+                        score = score - 1 + dateDiff
                     }
                 }
                 cards[matchIndex].isSeen = true
@@ -71,11 +71,11 @@ class Concentration {
         }
         //shuffle the cards
         var remainingCard = 0
-        for _ in 1...2*numberOfPairsOfCards {
-            let randomIndex = Int(arc4random_uniform(UInt32(2*numberOfPairsOfCards-remainingCard)))
+        for _ in 1...2 * numberOfPairsOfCards {
+            let randomIndex = Int(arc4random_uniform(UInt32(2 * numberOfPairsOfCards - remainingCard)))
             cards += [tempcards[randomIndex]]
             tempcards.remove(at: randomIndex)
-            remainingCard = remainingCard+1
+            remainingCard = remainingCard + 1
         }
     }
 }
