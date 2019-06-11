@@ -9,9 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+    //TODO: INCORPORATED
     
-    var buttonFlipColor = UIColor.orange
+    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
     
     // MARK: Outlets
     
@@ -57,7 +57,6 @@ class ViewController: UIViewController {
             updateViewFromModel()
         }
     }
-    
     // Make things private
     
     private func updateViewFromModel() {
@@ -76,9 +75,9 @@ class ViewController: UIViewController {
         flipCountLabel.text = "SCORE: \(game.score)"
     }
     
-    // Data
     
     private var emoji = [Int:String]()
+    var buttonFlipColor = UIColor.orange
     
     private func emoji(for card: Card) -> String? {
         //used in case of "optional datatype" so if it's set it's unwrapped and returned or else different value is returned in this case "?"

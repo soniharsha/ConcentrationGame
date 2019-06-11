@@ -15,20 +15,29 @@ class Concentration {
     
     private var indexOfOneAndOnlyFaceUp: Int?
     
+    let date = Date()
+    private  lazy var lastTimeTouched = date.timeIntervalSinceNow
+    
     func chooseCard(at index: Int) {
         //cards[index].isFaceUp = !cards[index].isFaceUp
         //including matchUp cases as well
         
         //only one card faceUp
+        
+        let curTime = date.timeIntervalSinceNow
+        let dateDiff = curTime - lastTimeTouched
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUp, matchIndex != index {
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
-                    score += 2
+                    score = score+2+Int(dateDiff)
                 } else {
                     if cards[matchIndex].isSeen ==  true {
-                        score -= 1
+                        score = score-1+Int(dateDiff)
+                    }
+                    if cards[index].isSeen == true {
+                        score = score-1+Int(dateDiff)
                     }
                 }
                 cards[matchIndex].isSeen = true
@@ -44,6 +53,7 @@ class Concentration {
                 indexOfOneAndOnlyFaceUp = index
             }
         }
+        lastTimeTouched = curTime
     }
     
     func reset() {
