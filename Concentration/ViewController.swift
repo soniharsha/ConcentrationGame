@@ -8,10 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    //TODO: INCORPORATED
-    
-    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+class ViewController: UIViewController {    
+    var game: Concentration!
     
     // MARK: Outlets
     
@@ -24,6 +22,7 @@ class ViewController: UIViewController {
     @IBAction func gameControl(_ sender: UIButton) {
         let title = gameControlTitle.title(for: UIControl.State.normal)!
         if title == "Start" {
+            game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
             flipCountLabel.text = "SCORE: \(game.score)"
             gameControlTitle.setTitle("Stop", for: UIControl.State.normal)
             assignEmojiToCards()
