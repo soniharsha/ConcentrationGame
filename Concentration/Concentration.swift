@@ -13,9 +13,29 @@ class Concentration {
 
     private(set) var score = 0
     
-    private var indexOfOneAndOnlyFaceUp: Int?
+    private var indexOfOneAndOnlyFaceUp: Int? {
+        get {
+            var foundIndex: Int?
+            for index in cards.indices {
+                if cards[index].isFaceUp {
+                    if foundIndex == nil {
+                        foundIndex = index
+                    } else {
+                        return nil
+                    }
+                }
+            }
+            return foundIndex
+        }
+        
+        set {
+            for index in cards.indices {
+                cards[index].isFaceUp = (newValue == index)
+            }
+        }
+    }
     
-    let date = Date()
+    private let date = Date()
     private lazy var lastTimeTouched = date.timeIntervalSinceNow
     
     func chooseCard(at index: Int) {
@@ -43,13 +63,7 @@ class Concentration {
                 cards[matchIndex].isSeen = true
                 cards[index].isSeen = true
                 cards[index].isFaceUp = true
-                indexOfOneAndOnlyFaceUp = nil
             } else {
-                //when two or zero cards are faceUP
-                for flipDownIndex in cards.indices {
-                    cards[flipDownIndex].isFaceUp = false
-                }
-                cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUp = index
             }
         }

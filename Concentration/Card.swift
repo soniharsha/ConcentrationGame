@@ -10,7 +10,7 @@ import Foundation
 
 // opening braces on same line
 struct Card {
-    var identifier: Int
+    private(set) var identifier: Int
 
     var isFaceUp = false // space before and after operators
     var isMatched = false
