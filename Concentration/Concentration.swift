@@ -43,6 +43,7 @@ class Concentration {
         //including matchUp cases as well
         
         //only one card faceUp
+        assert(cards.indices.contains(index), "error in chooseCards, index value \(index) is not correct")
         
         let curTime = date.timeIntervalSinceNow
         let dateDiff = Int(curTime - lastTimeTouched)
@@ -77,7 +78,9 @@ class Concentration {
         score = 0
     }
     
+    
     init(numberOfPairsOfCards: Int) {
+        assert(numberOfPairsOfCards > 1, "Not enough cards to start the game, error in init")
         var tempcards = [Card]()
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
@@ -86,7 +89,7 @@ class Concentration {
         //shuffle the cards
         var remainingCard = 0
         for _ in 1...2 * numberOfPairsOfCards {
-            let randomIndex = Int(arc4random_uniform(UInt32(2 * numberOfPairsOfCards - remainingCard)))
+            let randomIndex = (2 * numberOfPairsOfCards - remainingCard).random4arc
             cards += [tempcards[randomIndex]]
             tempcards.remove(at: randomIndex)
             remainingCard = remainingCard + 1

@@ -97,6 +97,7 @@ class ViewController: UIViewController {
         return emoji[card.identifier]
     }
     
+    
     private func assignEmojiToCards() {
         var emojiChoices = [0: ["🤣","😍","🤫","🤮","🤦🏻‍♀️","🤷🏻‍♀️","🥺","🙆🏻‍♀️"],
                             1: ["🙈","🙉","🙊","🐵","🐒","🐻","🐨","🐶"],
@@ -109,7 +110,7 @@ class ViewController: UIViewController {
         
         var uniqueEmojiIndex = 0
         let totalUniqueEmojiIndex = numberOfPairsOfCards
-        let randomKey = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+        let randomKey = (emojiChoices.count).random4arc
         self.view.backgroundColor = viewBackgroundColors[randomKey]
         buttonBackgroundColor = buttonBackgroundColors[randomKey]
         gameControlBackgroundColor = gameControlBackgroundColors[randomKey]
@@ -118,7 +119,7 @@ class ViewController: UIViewController {
             let card = game.cards[index]
             cardButtons[index].backgroundColor = buttonBackgroundColor
             if emoji[card.identifier] == nil {
-                let randomEmojiIndex = Int(arc4random_uniform(UInt32(totalUniqueEmojiIndex-uniqueEmojiIndex)))
+                let randomEmojiIndex = (totalUniqueEmojiIndex-uniqueEmojiIndex).random4arc
                 
                 emoji[card.identifier] = emojiChoices[randomKey]![randomEmojiIndex]
                 emojiChoices[randomKey]!.remove(at: randomEmojiIndex)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A07A4F722B39AB60044E41C /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A07A4F622B39AB60044E41C /* File.swift */; };
 		3AE29F4322A9216C0003CBB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE29F4222A9216C0003CBB1 /* AppDelegate.swift */; };
 		3AE29F4522A9216C0003CBB1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE29F4422A9216C0003CBB1 /* ViewController.swift */; };
 		3AE29F4822A9216C0003CBB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE29F4622A9216C0003CBB1 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A07A4F622B39AB60044E41C /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		3AE29F3F22A9216C0003CBB1 /* Concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE29F4222A9216C0003CBB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AE29F4422A9216C0003CBB1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				3AE29F5522AA79410003CBB1 /* Concentration.swift */,
+				3A07A4F622B39AB60044E41C /* File.swift */,
 				3AE29F5722AA7A860003CBB1 /* Card.swift */,
 				3AE29F4422A9216C0003CBB1 /* ViewController.swift */,
 				3AE29F4622A9216C0003CBB1 /* Main.storyboard */,
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A07A4F722B39AB60044E41C /* File.swift in Sources */,
 				3AE29F4522A9216C0003CBB1 /* ViewController.swift in Sources */,
 				3AE29F4322A9216C0003CBB1 /* AppDelegate.swift in Sources */,
 				3AE29F5622AA79410003CBB1 /* Concentration.swift in Sources */,
