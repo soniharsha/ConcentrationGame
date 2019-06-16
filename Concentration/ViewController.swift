@@ -33,18 +33,20 @@ class ViewController: UIViewController {
     }
     
     private func updateStopView() {
-        buttonBackgroundColor = UIColor(red: 193/255, green: 172/255, blue: 230/255, alpha: 1)
+        //gameControlLabel.backgroundColor = buttonBackgroundColor
+        //buttonBackgroundColor = UIColor(red: 193/255, green: 172/255, blue: 230/255, alpha: 1)
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
         flipCountLabel.text = "SCORE: \(game.score)"
         gameControlLabel.setTitle("Stop", for: UIControl.State.normal)
         assignEmojiToCards()
         flipCountLabel.textColor = UIColor.white
         flipCountLabel.backgroundColor = UIColor.white.withAlphaComponent(0.0)
-        gameControlLabel.backgroundColor = buttonBackgroundColor
         gameControlLabel.setTitleColor(UIColor.white, for: UIControl.State.normal)
     }
     
     private func updateStartView() {
+        gameControlBackgroundColor = UIColor(red: 35/255, green: 65/255, blue: 66/255, alpha: 1)
+        buttonBackgroundColor = UIColor(red: 193/255, green: 172/255, blue: 230/255, alpha: 1)
         gameControlLabel.setTitle("Start", for: UIControl.State.normal)
         for index in cardButtons.indices { // use forEach
             let button = cardButtons[index]
@@ -81,10 +83,8 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? UIColor.white.withAlphaComponent(0.0) : buttonBackgroundColor
             }
         }
-        
         flipCountLabel.text = "SCORE: \(game.score)"
     }
-    
     
     private var emoji = [Int:String]()
     private var defaultCountLabelColor = UIColor(red: 77/255, green: 141/255, blue: 176/255, alpha: 1)
@@ -104,9 +104,9 @@ class ViewController: UIViewController {
                             2: ["🍐","🍏","🍈","🍌","🥝","🍋","🍇","🍍"],
                             3: ["❤️","🧡","💛","💚","💙","💜","💖","🖤"]]
         
-        var viewBackgroundColors = [UIColor.yellow, UIColor.brown, UIColor(red: 178/255, green: 194/255, blue: 141/255, alpha: 1), UIColor.red ]
-        var buttonBackgroundColors = [UIColor.magenta, UIColor.darkGray, UIColor(red: 126/255, green: 138/255, blue: 69/255, alpha: 1), UIColor.black]
-        var gameControlBackgroundColors = [UIColor(red: 126/255, green: 138/255, blue: 69/255, alpha: 1), UIColor(red: 126/255, green: 138/255, blue: 69/255, alpha: 1), UIColor(red: 27/255, green: 66/255, blue: 14/255, alpha: 1), UIColor(red: 126/255, green: 138/255, blue: 69/255, alpha: 1)]
+        var viewBackgroundColors = [UIColor(red: 194/255, green: 180/255, blue: 77/255, alpha: 1), UIColor(red: 118/255, green: 131/255, blue: 106/255, alpha: 1), UIColor(red: 178/255, green: 194/255, blue: 141/255, alpha: 1), UIColor(red: 128/255, green: 13/255, blue: 8/255, alpha: 1) ]
+        var buttonBackgroundColors = [UIColor(red: 188/255, green: 230/255, blue: 131/255, alpha: 1), UIColor(red: 66/255, green: 61/255, blue: 11/255, alpha: 1), UIColor(red: 126/255, green: 138/255, blue: 69/255, alpha: 1), UIColor(red: 112/255, green: 108/255, blue: 104/255, alpha: 1)]
+        var gameControlBackgroundColors = [UIColor(red: 128/255, green: 125/255, blue: 46/255, alpha: 1), UIColor(red: 138/255, green: 124/255, blue: 69/255, alpha: 1), UIColor(red: 27/255, green: 66/255, blue: 14/255, alpha: 1), UIColor(red: 179/255, green: 75/255, blue: 70/255, alpha: 1)]
         
         var uniqueEmojiIndex = 0
         let totalUniqueEmojiIndex = numberOfPairsOfCards
@@ -114,13 +114,13 @@ class ViewController: UIViewController {
         self.view.backgroundColor = viewBackgroundColors[randomKey]
         buttonBackgroundColor = buttonBackgroundColors[randomKey]
         gameControlBackgroundColor = gameControlBackgroundColors[randomKey]
+        gameControlLabel.backgroundColor = gameControlBackgroundColor
         
         for index in cardButtons.indices {
             let card = game.cards[index]
             cardButtons[index].backgroundColor = buttonBackgroundColor
             if emoji[card.identifier] == nil {
                 let randomEmojiIndex = (totalUniqueEmojiIndex-uniqueEmojiIndex).random4arc
-                
                 emoji[card.identifier] = emojiChoices[randomKey]![randomEmojiIndex]
                 emojiChoices[randomKey]!.remove(at: randomEmojiIndex)
                 uniqueEmojiIndex = uniqueEmojiIndex + 1
@@ -128,4 +128,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
